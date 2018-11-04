@@ -222,7 +222,7 @@ public class ExcelHeadProperty {
             return -1;
         }
         int rowNum;
-        for(rowNum = j; rowNum < columnvalue.size() ; rowNum++) {
+        for(rowNum = j; rowNum < columnvalue.lastIndexOf(value) ; rowNum++) {
             if(value.equals(columnvalue.get(rowNum))) {
                 continue;
             }else {
