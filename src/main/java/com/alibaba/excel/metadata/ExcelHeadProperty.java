@@ -202,23 +202,35 @@ public class ExcelHeadProperty {
      * @return
      */
     private int getLastRangColumn(String value, List<String> headByRowNum, int i) {
-        if (headByRowNum.indexOf(value) < i) {
+        if(i != 0 && value.equals(headByRowNum.get(i - 1))) {
             return -1;
-        } else {
-            return headByRowNum.lastIndexOf(value);
         }
+        int colNum;
+        for(colNum = i; colNum < headByRowNum.lastIndexOf(value); colNum++) {
+            if(value.equals(headByRowNum.get(colNum))) {
+                continue;
+            }else {
+                colNum -= 1;
+                break;
+            }
+        }
+        return colNum;
     }
 
     private int getLastRangRow(int j, String value, List<String> columnvalue) {
-
-        if (columnvalue.indexOf(value) < j) {
+        if(j != 0 && value.equals(columnvalue.get(j - 1))){
             return -1;
         }
-        if (value != null && value.equals(columnvalue.get(columnvalue.size() - 1))) {
-            return getRowNum() - 1;
-        } else {
-            return columnvalue.lastIndexOf(value);
+        int rowNum;
+        for(rowNum = j; rowNum < columnvalue.size() ; rowNum++) {
+            if(value.equals(columnvalue.get(rowNum))) {
+                continue;
+            }else {
+                rowNum -= 1;
+                break;
+            }
         }
+        return rowNum;
     }
 
     public int getRowNum() {
